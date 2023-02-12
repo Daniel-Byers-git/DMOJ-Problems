@@ -1,34 +1,47 @@
-/*
-As part of your mandatory forty hours of community service you have been tasked with getting rid of some rather unsightly 
-icicles outside of Martingrove.
-
-There are N icicles that you were tasked with destroying, with the ith icicle having a length of Li. 
-When you destroy an icicle its length is set to 0 . After careful examination, you realize that the icicles can 
-be spared for aesthetic reasons if they are symmetrical. That is, a sequence of N icicles is considered symmetrical if 
-the ith icicle from the left has the same length as the ith icicle from the right.
-
-What is the minimum number of icicles that you must destroy?
-Constraints
-1 ≤ N , Li ≤ 10^6
-
-Input Specification
-The first line contains integer N .
-
-The second line contains N integers, where the i th integer represents the length of the ith icicle.
-
-Output Specification
-Output a single integer, the minimum number of icicles needed to be destroyed.
-
-Sample Input:
-5
-3 2 1 4 3
-
-Sample Output:
-2
-*/
-
 #include <cstdio>
 #include <vector> // May be slower and increase memory usage
+
+int main()
+{
+	long int N{};
+	scanf("%ld", &N);
+
+	long int Mid = (N/2) - 1;
+	int length_val;
+	std::vector<int> icicle;
+	int number_destoyed{};
+
+	if (N%2 == 1) // If N is Odd
+	{
+		for (int i{}; i < N; i++)
+		{
+			
+			scanf("%d", &length_val);
+			icicle.push_back(length_val);
+			if(i == Mid + 1){continue;} // Only for odd N
+			if(i > Mid && icicle.at(i) != icicle.at(((2*Mid)+2)-i)) // 2*Mid + 2 is exclusive to odd N
+			{
+				number_destoyed += 2;
+			}
+		}
+	}
+	else // If N is Even 
+	{
+		for (int i{}; i < N; i++)
+		{
+			scanf("%d", &length_val);
+			icicle.push_back(length_val);
+			if(i > Mid && icicle.at(i) != icicle.at(((2*Mid)+1)-i)) // 2*Mid + 1 is exclusive to even N
+			{
+				number_destoyed += 2;
+			}
+		}
+	}
+	printf("%d", number_destoyed);
+	return 0;
+}
+
+// * Scratched Ideas //
 
 /*
 ! Attempt one
@@ -126,43 +139,3 @@ int main(void)
 	return 0; 
 }
 */
-
-int main()
-{
-	long int N{};
-	scanf("%ld", &N);
-
-	long int Mid = (N/2) - 1;
-	int length_val;
-	std::vector<int> icicle;
-	int number_destoyed{};
-
-	if (N%2 == 1) // If N is Odd
-	{
-		for (int i{}; i < N; i++)
-		{
-			
-			scanf("%d", &length_val);
-			icicle.push_back(length_val);
-			if(i == Mid + 1){continue;} // Only for odd N
-			if(i > Mid && icicle.at(i) != icicle.at(((2*Mid)+2)-i)) // 2*Mid + 2 is exclusive to odd N
-			{
-				number_destoyed += 2;
-			}
-		}
-	}
-	else // If N is Even 
-	{
-		for (int i{}; i < N; i++)
-		{
-			scanf("%d", &length_val);
-			icicle.push_back(length_val);
-			if(i > Mid && icicle.at(i) != icicle.at(((2*Mid)+1)-i)) // 2*Mid + 1 is exclusive to even N
-			{
-				number_destoyed += 2;
-			}
-		}
-	}
-	printf("%d", number_destoyed);
-	return 0;
-}
