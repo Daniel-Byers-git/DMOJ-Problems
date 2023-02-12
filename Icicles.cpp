@@ -1,5 +1,5 @@
 #include <cstdio>
-#include <vector> // May be slower and increase memory usage
+#include <vector>
 
 int main()
 {
