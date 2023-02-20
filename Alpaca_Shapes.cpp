@@ -3,8 +3,7 @@
 int main()
 {
     int S, R;
-    scanf("%d", &S);
-    scanf("%d", &R);
+    scanf("%d%d", &S, &R);
     
     int A_square = S*S;
     int A_circle = 3.14 * (R*R);
