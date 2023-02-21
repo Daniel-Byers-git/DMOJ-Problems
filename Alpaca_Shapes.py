@@ -4,4 +4,4 @@ A_circ = 3.14*r*r
 if (A_square > A_circ):
     print("SQUARE")
 else:
-    print("CIRCLE")
+    print("CIRCLE") 
